@@ -1,0 +1,200 @@
+.site-footer {
+    z-index: -100;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    max-width: 1330px;
+    transform: translateX(1px);
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    background: #222;
+    color: #fff;
+    display: block;
+
+    & > span {
+        width: 1px;
+        background: #fff;
+    }
+
+    & > section {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex: 0 0 33%;
+        text-align: center;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #fff;
+    }
+
+    .title {
+        text-transform: uppercase;
+        text-align: center;
+
+        &::after {
+            display: block;
+            content: "";
+            height: 2px;
+            background: var(--blue);
+            margin: 0.25em 0;
+        }
+    }
+    
+    .site-map {
+        ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        
+        li:not(:last-child) {
+            margin-bottom: 0.5em;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #fff;
+            display: inline-block;
+            position: relative;
+
+            &::after {
+                display: block;
+                content: "";
+                opacity: 1;
+                position: absolute;
+                left: 50%;
+                right: 100%;
+                width: 0;
+                height: 2px;
+                background: #fff;
+                transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+            }
+
+            &:hover {
+                color: var(--light-blue);
+
+                &::after {
+                    left: -10%;
+                    width: 120%
+                }
+            }
+
+            i {
+                display: none;
+                opacity: 0;
+                position: absolute;
+            }
+        }
+    }
+    
+    .follow-us {
+        list-style-type: none;
+        display: flex;
+        
+        li {
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+
+            $color-by-child: (
+                1: #3b5998,
+                2: #00aced,
+                3: #517fa4
+            );
+
+            @each $child, $color in $color-by-child {
+                &:nth-child(#{$child}) a {
+                    background: $color;
+                }    
+            }
+
+            a:hover {
+                background: transparent;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            position: relative;
+            @extend %flex-centered;
+            font-size: 1.5em;
+            color: #fff;
+            @include circle(2.5em);
+            border: 2px solid #fff;
+            transition: background-color 0.3s;
+        }
+    }
+    
+    .sign-up {
+        display: flex;
+        flex-direction: column;
+
+        input:focus {
+            animation: border-color 2s linear infinite;
+        }
+
+        @keyframes border-color {
+            from {
+                border-color: #fff;
+            }
+        
+            50% {
+                border-color: #049;
+            }
+        
+            to {
+                border-color: #fff;
+            }
+        }
+
+        .input-wrapper {
+            width: 15rem;
+            height: 2.5em;
+            margin: 0 0.5rem 1rem;
+
+            &:focus-within i {
+                animation: rotate 1.5s linear infinite;
+            }
+
+            @keyframes rotate {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+        }
+
+        input[type=submit] {
+            padding: 0.5em 2.5em;
+        }
+    }
+
+    & > p {
+        width: 100%;
+        text-align: center;
+        font-size: 0.9em;
+        color: #ccc;
+        margin-top: -0.5rem;
+        padding-bottom: 1rem;
+    }
+
+    @include mq-min-w(700px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        & > section {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            flex: 0 0 33%;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border: none;
+        }
+
+        & > p {
+            padding-top: 1rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid #fff;
+        }
+    }
+}

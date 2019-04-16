@@ -1,0 +1,223 @@
+aside.share {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    padding: 1rem;
+    transform: translateY(-50%);
+
+    .title {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s, opacity 0.3s;
+        transition-delay: 0.4s;
+        display: flex;
+        flex-direction: column;
+        padding: 0.2em;
+        border-radius: 1em;
+        background: rgba(white, 0.3);    
+        cursor: pointer;
+    }
+
+    ul {
+        list-style-type: none;
+        display: contents;
+    }
+
+    @for $i from 1 through 5 {
+        li:nth-of-type(#{$i}) {
+            grid-area: li#{$i};
+        }
+    }
+
+    li {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    li:last-of-type {
+        display: none;
+        opacity: 0;
+        position: absolute;
+        grid-area: btn;
+        justify-self: center;
+        transform: translateY(-5rem);
+        
+        button {
+            width: 3em;
+            height: 3em;
+            font-size: 1.1em;
+            border-radius: 50%;
+            outline: none;
+            border: 2px solid #000;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            i {
+                font-size: 1.5em;
+            }
+        }
+    }
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 0.75rem;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: #000;
+        background: #fff;
+        border: 3px solid #000;
+        border-radius: 50%;
+
+        &:hover {
+            border-color: #555;
+
+            i {
+                transform: rotate(360deg);
+            }
+
+            &::after {
+                opacity: 1;
+            }
+
+            $colorByClass: (
+                fa-facebook: #3b5998,
+                fa-twitter: #00aced,
+                fa-google-plus: #dd4b39,
+                fa-linkedin: #007bb6,
+                fa-instagram: #517fa4
+            );
+
+            @each $class, $color in $colorByClass {
+                .#{$class} {
+                    color: $color;
+                }
+            }
+        }
+
+        &::after {
+            position: absolute;
+            @extend %tlrb-zero;
+            border-radius: 50%;
+            content: "";
+            display: block;
+            box-shadow: 0 0.4em 0.75em 0 rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    }
+
+    i {
+        transition: color 0.3s, transform 0.3s;
+    }
+
+    @include mq-min-w(600px) {
+        .title {
+            transition: transform 0.3s, opacity 0.3s;
+            transition-delay: 0.4s;
+            pointer-events: none;
+        }
+
+        &:hover {
+            .title {
+                // transform: translateX(-500%) rotate(-90deg);
+                
+                opacity: 0;
+                transform: translateY(200%);
+            }
+
+            li {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+            display: block;
+        }
+        
+        li {
+            transform: translateX(-200%);
+            transition: transform 0.2s, opacity 0.5s;
+    
+            &:not(:last-child) {
+                margin-bottom: 0.5em;
+            }
+    
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    transition-delay: $i * 0.1s;
+                }
+            }
+
+            &:last-of-type {
+                opacity: 0;
+                display: none;
+                position: absolute;
+            }
+        }
+    }
+}
+
+@include mq-max-w(599px) {
+    .share-center {
+        display: contents;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 100;    
+        animation: slide-down 0.5s ease-out;
+
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+            }
+        }
+
+        aside.share {
+            transform: translateY(0);
+            display: grid;
+            position: static;
+            // grid-template-columns: repeat(3, 3rem);
+            // grid-template-rows: repeat(4, 3rem);
+            grid-gap: 0.5em;
+            grid-template-areas:
+                " . btn . "
+                "li1 . li2"
+                ".  li3 ."
+                "li4 . li5";
+
+            .title {
+                opacity: 0;
+                display: none;
+                position: absolute;
+                pointer-events: none;
+            }
+
+            li {
+                opacity: 1;
+                pointer-events: all;
+                display: block;
+            }
+
+            a {
+                padding: 1.5rem;
+            }
+        }
+    }
+}

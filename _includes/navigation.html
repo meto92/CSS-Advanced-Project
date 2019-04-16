@@ -1,0 +1,14 @@
+{% assign sortedPages = site.pages | where_exp: "page", "page.url != '/feed.xml'" | sort: 'order' %}
+
+<nav {% if (include.location == "header") %} class="main-nav" {% endif %}>
+    <ul>
+        {% for item in sortedPages %}
+            <li {% if (item.url == page.url and include.location == "header") %} class="current-page" {% endif %}>
+                <a href="{{ site.baseurl }}{{ item.url }}">
+                    {{ item.icon }}
+                    <span>{{ item.linkText }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

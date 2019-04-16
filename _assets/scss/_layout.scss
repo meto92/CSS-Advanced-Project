@@ -1,0 +1,27 @@
+body[class*="wierd-sea-animals"] {
+    
+}
+
+body {
+    max-width: 1333px;
+    margin: 0 auto;
+    background: #fff;
+}
+
+main {
+    background: #fff;
+
+    // & > section {
+    //     margin: 0 1.5rem 1.5rem;
+        
+    //     @include mq-min-w(700px) {
+    //         margin: 0 3rem 3rem;
+    //     }
+    // }
+
+    & > header h1 {
+        text-align: center;
+        padding: 3rem 0;
+        background: #fff;
+    }
+}

@@ -1,0 +1,80 @@
+form {
+    $form: &;
+
+    & > label {
+        margin-bottom: 0.5em;
+        color: #000;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .input-wrapper, textarea {
+        margin-bottom: 1em;
+    }
+
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        height: 2.75em;
+        position: relative;
+        border-radius: 0.3em;
+    
+        i {
+            z-index: 1;
+            width: 1em;
+            color: #fff;
+            padding: 0;
+            margin: 0 0.75em;
+        }
+    
+        @at-root #{$form} textarea,
+        & input {
+            color: #fff;
+            background: #333;
+            border: 3px solid #fff;
+            border-radius: 1.2em;
+            outline: none;
+
+            &:focus {
+                background: linear-gradient(90deg, #333, var(--blue), #333);
+            }
+        }
+
+        input {
+            position: absolute;
+            width: 100%;
+            @extend %tlrb-zero;
+            padding: 0 0.5em 0 2.3em;
+        }
+    }
+
+    textarea {
+        resize: none;
+        padding: 1em;
+        overflow: hidden;
+    }
+
+    input[type=submit] {
+        font-size: 1.2em;
+        font-weight: bold;
+        line-height: 1;
+        padding: 0.6em;
+        color: #fff;
+        background: var(--blue);
+        border: 2px solid var(--blue);
+        border-radius: 1em;
+        outline: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background: var(--light-blue);
+            color: #000;
+        }
+    }
+
+    ::placeholder {
+        color: #ccc;
+        font-style: italic;
+    }
+}

@@ -1,0 +1,21 @@
+<header class="site-header {% if (page.url == '/') %} banner {% endif %}" style="background-image: url('{{site.baseurl}}/images/Species_Great_White_Shark_WWF_Carlos_Aguilera.jpg')">
+    <section class="nav-and-search">
+        <a href="{{ site.baseurl }}/" class="home-fish"><i class="fas fa-fish"></i></a>
+        <input type="checkbox" id="toggle-nav">
+        
+        <label for="toggle-nav" id="lbl-toggle-nav">
+            <i class="fas"></i> Menu
+        </label>
+        
+        {% include navigation.html location="header" %}
+
+        <label class="search">
+            <input type="text" placeholder="Search . . .">
+            <i class="fas fa-search"></i>
+        </label>
+    </section>
+
+    <section class="header-info">
+        <h4>Find some weird sea animals you didn't know exist</h4>
+    </section>
+</header>

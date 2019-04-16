@@ -1,0 +1,36 @@
+---
+layout: page
+title: Gallery
+linkText: Gallery
+icon: <i class="fas fa-camera"></i>
+order: 2
+images: 
+  - Black and white lion fish.jpg
+  - Delicate Claw Crustacean.jpg
+  - Golden Lace Nudibranch.jpg
+  - Green jellyfish.jpg
+  - Lizard Island Octopus.jpg
+  - Metapseudes.jpg
+  - The Dumbo Octopus.jpg
+  - Venus Flytrap Anemone.jpg
+  - White and red jellyfish.jpg
+  - photo-1520990056956-5d29b4884100.jpg
+  - photo-1522024343969-805a5eadd461.jpg
+  - photo-1523264469475-53cf30cef2f0.jpg
+  - photo-1523596532908-dc0045c7d1d7.jpg
+  - photo-1527569990983-73621d4cdfa4.jpg
+  - photo-1530989430525-94758017557a.jpg
+  - photo-1534575180408-b7d7c0136ee8.jpg
+---
+
+<section class="gallery">
+    <ul class="gallery">
+        {% for img in page.images %}
+            <li>
+                <div class="img-container">
+                    <img src="{{ site.baseurl }}images/gallery/{{ img }}" alt="Animal picture">
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
