@@ -1,17 +1,125 @@
+@mixin hexagons {
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+@mixin octogons {
+    clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+}
+
 section.gallery {
     margin: 0 3rem 3rem;
     
+    .gallery-types {
+        @include mq-max-w(599px) {
+            opacity: 0;
+            display: none;
+            position: absolute;
+        }
+
+        ul {
+            list-style-type: none;
+            margin-bottom: var(--main-ws);
+
+            @extend %flex-centered;
+
+            li {
+                width: 2rem;
+                height: 2rem;
+                background: #333;
+                cursor: pointer;
+
+                &.active {
+                    pointer-events: none;
+                }
+
+                &.active,
+                &:hover {
+                    background: var(--blue);
+                }
+
+                &:not(:last-child) {
+                    margin-right: 1rem;
+                }
+
+                &.squares {
+                    border-radius: 0.3em;
+                }
+
+                &.circles {
+                    border-radius: 50%;
+                }
+
+                &.hexagons {
+                    @include hexagons;
+                }
+
+                &.octogons {
+                    @include octogons;
+                }
+            }
+        }
+    }
+
     ul.gallery {
         list-style: none outside;
         display: grid;
         grid-gap: var(--main-ws);
-
+        
         @include mq-min-w(600px) {
             @at-root section.gallery {
                 margin: 0 5rem 5rem;
             }
-
+            
             grid-template-columns: repeat(3, 1fr);
+
+            &.circles,
+            &.hexagons,
+            &.octogons {
+                grid-gap: 0;
+            }
+
+            &.hexagons,
+            &.octogons {
+                .img-container {
+                    border: none;
+                }
+            }
+
+            &.squares {
+                grid-gap: var(--main-ws);
+
+                .img-container {
+                    border-radius: 0.3em;
+                }
+            }
+
+            &.circles {
+                .img-container {
+                    border-radius: 50%;
+                }
+            }
+
+            &.hexagons {
+                .img-container {
+                    @include hexagons;
+                }
+            }
+
+            &.octogons {
+                .img-container {
+                    @include octogons;
+                }
+            }
+
+            li:last-child {
+                &:nth-child(3n - 2) {
+                    grid-column: 2;
+                }
+
+                &:nth-child(3n - 1) {
+                    grid-column: 3;
+                }
+            }
         }
 
         li {
@@ -23,8 +131,9 @@ section.gallery {
         .img-container {
             position: absolute;
             @extend %tlrb-zero;
+            background: #ccc;
             border: 3px solid #000;
-            border-radius: 50%;
+            border-radius: 0.3em;
             overflow: hidden;
 
             &:hover {
@@ -35,8 +144,8 @@ section.gallery {
                 }
 
                 img {
-                    max-width: 80%;
-                    max-height: 80%;
+                    max-width: 77%;
+                    max-height: 77%;
                 }
             }
 
@@ -56,36 +165,12 @@ section.gallery {
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                max-width: 75vmax;
                 transform: translate(-50%, -50%);
-                border-radius: 0.1rem;
+                max-width: 75vmax;
+                border-radius: 0.3em;
                 transition: filter 0.3s;
                 pointer-events: none;
             }
         }
     }
 }
-
-// &:nth-child(6n - 5),
-            // &:nth-child(6n) {
-            //     align-self: start;
-            // }
-
-            // &:nth-child(6n - 4),
-            // &:nth-child(6n - 1) {
-            //     align-self: center;                
-            // }
-
-            // &:nth-child(6n - 3),
-            // &:nth-child(6n - 2) {
-            //     align-self: end;                
-            // }
-
-            // &:nth-child(4) {
-            //     grid-row: 3;
-            // }
-
-            // &:nth-child(8) {
-            //     grid-row: 5;
-            //     grid-column: 2;
-            // }

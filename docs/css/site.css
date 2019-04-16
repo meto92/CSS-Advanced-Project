@@ -6,6 +6,7 @@
   --layout-ws: 3rem;
   --base-lh: 1.5;
   --headings-lh: 1.1;
+  --body-bg-color: #eee;
   --blue: #049;
   --light-blue: #07f; }
 
@@ -15,7 +16,7 @@ form .input-wrapper input, aside.share a::after, section.gallery ul.gallery .img
   right: 0;
   bottom: 0; }
 
-.site-header .main-nav a, .site-header .header-info, .site-footer .follow-us a, .slideshow-circles {
+.site-header .main-nav a, .site-header .header-info, .site-footer .follow-us a, .slideshow-circles, section.gallery .gallery-types ul {
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -150,14 +151,14 @@ form ::placeholder {
 body {
   max-width: 1333px;
   margin: 0 auto;
-  background: #fff; }
+  background: var(--body-bg-color); }
 
 main {
-  background: #fff; }
+  background: var(--body-bg-color); }
   main > header h1 {
     text-align: center;
-    padding: 3rem 0;
-    background: #fff; }
+    padding: var(--layout-ws) 0;
+    background: var(--body-bg-color); }
 
 .site-header {
   padding: 1rem; }
@@ -976,6 +977,35 @@ aside.images {
 
 section.gallery {
   margin: 0 3rem 3rem; }
+  @media screen and (max-width: 599px) {
+    section.gallery .gallery-types {
+      opacity: 0;
+      display: none;
+      position: absolute; } }
+  section.gallery .gallery-types ul {
+    list-style-type: none;
+    margin-bottom: var(--main-ws); }
+    section.gallery .gallery-types ul li {
+      width: 2rem;
+      height: 2rem;
+      background: #333;
+      cursor: pointer; }
+      section.gallery .gallery-types ul li.active {
+        pointer-events: none; }
+      section.gallery .gallery-types ul li.active, section.gallery .gallery-types ul li:hover {
+        background: var(--blue); }
+      section.gallery .gallery-types ul li:not(:last-child) {
+        margin-right: 1rem; }
+      section.gallery .gallery-types ul li.squares {
+        border-radius: 0.3em; }
+      section.gallery .gallery-types ul li.circles {
+        border-radius: 50%; }
+      section.gallery .gallery-types ul li.hexagons {
+        -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+                clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+      section.gallery .gallery-types ul li.octogons {
+        -webkit-clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+                clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
   section.gallery ul.gallery {
     list-style: none outside;
     display: grid;
@@ -984,23 +1014,44 @@ section.gallery {
       section.gallery ul.gallery {
         grid-template-columns: repeat(3, 1fr); }
         section.gallery {
-          margin: 0 5rem 5rem; } }
+          margin: 0 5rem 5rem; }
+        section.gallery ul.gallery.circles, section.gallery ul.gallery.hexagons, section.gallery ul.gallery.octogons {
+          grid-gap: 0; }
+        section.gallery ul.gallery.hexagons .img-container, section.gallery ul.gallery.octogons .img-container {
+          border: none; }
+        section.gallery ul.gallery.squares {
+          grid-gap: var(--main-ws); }
+          section.gallery ul.gallery.squares .img-container {
+            border-radius: 0.3em; }
+        section.gallery ul.gallery.circles .img-container {
+          border-radius: 50%; }
+        section.gallery ul.gallery.hexagons .img-container {
+          -webkit-clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+                  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+        section.gallery ul.gallery.octogons .img-container {
+          -webkit-clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+                  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%); }
+        section.gallery ul.gallery li:last-child:nth-child(3n - 2) {
+          grid-column: 2; }
+        section.gallery ul.gallery li:last-child:nth-child(3n - 1) {
+          grid-column: 3; } }
     section.gallery ul.gallery li {
       width: 100%;
       padding-top: 100%;
       position: relative; }
     section.gallery ul.gallery .img-container {
       position: absolute;
+      background: #ccc;
       border: 3px solid #000;
-      border-radius: 50%;
+      border-radius: 0.3em;
       overflow: hidden; }
       section.gallery ul.gallery .img-container:hover {
         cursor: zoom-in; }
         section.gallery ul.gallery .img-container:hover::after {
           opacity: 1; }
         section.gallery ul.gallery .img-container:hover img {
-          max-width: 80%;
-          max-height: 80%; }
+          max-width: 77%;
+          max-height: 77%; }
       section.gallery ul.gallery .img-container:after {
         position: absolute;
         content: "";
@@ -1014,10 +1065,10 @@ section.gallery {
         position: absolute;
         top: 50%;
         left: 50%;
-        max-width: 75vmax;
         -webkit-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
-        border-radius: 0.1rem;
+        max-width: 75vmax;
+        border-radius: 0.3em;
         transition: -webkit-filter 0.3s;
         transition: filter 0.3s;
         transition: filter 0.3s, -webkit-filter 0.3s;

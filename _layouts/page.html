@@ -24,10 +24,20 @@
 
     <span class="back-to-top" title="Back to top"><i class="fas fa-chevron-circle-up"></i></span>
 
+    <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <script src="home.js"></script> -->
+    
+    {% if page.url == "/" %}
+        <script src="{{ site.baseurl }}/scripts/home.js"></script>
+    {% endif %}
+    
     <script src="{{ site.baseurl }}/scripts/site-footer.js"></script>
     <script src="{{ site.baseurl }}/scripts/share.js"></script>
     <script src="{{ site.baseurl }}/scripts/back-to-top.js"></script>
+
+    {% if page.url == "/gallery.html" %}
+        <script src="{{ site.baseurl }}/scripts/gallery-type.js"></script>
+        <script src="{{ site.baseurl }}/scripts/img-zoom.js"></script>
+    {% endif %}
 </body>
 </html>

@@ -24,13 +24,23 @@ images:
 ---
 
 <section class="gallery">
-    <ul class="gallery">
-        {% for img in page.images %}
-            <li>
-                <div class="img-container">
-                    <img src="{{ site.baseurl }}images/gallery/{{ img }}" alt="Animal picture">
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+    <article class="gallery-types">
+        <ul>
+            <li class="squares active"></li>
+            <li class="circles"></li>
+            <li class="hexagons"></li>
+            <li class="octogons"></li>
+        </ul>
+    </article>
+    <article>
+        <ul class="gallery">
+            {% for img in page.images %}
+                <li>
+                    <div class="img-container">
+                        <img src="{{ site.baseurl }}images/gallery/{{ img }}" alt="Animal picture">
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </article>
 </section>
