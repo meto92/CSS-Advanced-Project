@@ -7,17 +7,13 @@ const autoprefixer = require("gulp-autoprefixer");
 const browserSync = require('browser-sync').create();
 const sass = require('gulp-sass');
 
-// gulp.task("css", () => {
-// 	return gulp.src( '_assets/css/**/*.css' )
-// 		.pipe( autoprefixer() )
-// 		.pipe( gulp.dest( './docs/css/' ) )
-// 		.pipe(browserSync.stream({ match: '**/*.css' }));
-// });
-
 gulp.task("scss", () => {
 	return gulp.src('_assets/scss/**/*.scss')
 		.pipe(sass(/*{outputStyle: "compressed"}*/).on('error', sass.logError))
-		.pipe(autoprefixer())
+		.pipe(autoprefixer({
+			browsers: ["last 2 versions"],
+			cascade: false
+		}))
 		.pipe(gulp.dest('./docs/css/'))
 		.pipe(browserSync.stream({ match: '**/*.css' }));
 });
@@ -39,13 +35,6 @@ gulp.task("jekyll", () => {
 });
 
 sass.compiler = require('node-sass');
-
-gulp.task('sass2', function () {
-	return gulp.src('_assets/scss/**/*.scss')
-		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('_assets/css'))
-		.pipe(browserSync.stream({ match: '**/*.css' }));
-});
 
 gulp.task("watch", () => {
 	browserSync.init({
