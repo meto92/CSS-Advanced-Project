@@ -107,44 +107,49 @@
                 }    
             }
 
-            a:hover {
-                background: transparent;
-            }
-        }
+            a {
+                text-decoration: none;
+                position: relative;
+                @extend %flex-centered;
+                font-size: 1.5em;
+                color: #fff;
+                @include circle(2.5em);
+                border: 2px solid #fff;
+                transition: background-color 0.3s;
+    
+                $content-by-class: (
+                    facebook: "\f39e",
+                    twitter: "\f099",
+                    instagram: "\f16d"
+                );
+    
+                @each $class, $content in $content-by-class {
+                    &.#{$class}::before {
+                        content: $content;
+                    }
+                }
 
-        a {
-            text-decoration: none;
-            position: relative;
-            @extend %flex-centered;
-            font-size: 1.5em;
-            color: #fff;
-            @include circle(2.5em);
-            border: 2px solid #fff;
-            transition: background-color 0.3s;
+                &:hover {
+                    // background: transparent;
+                    background: linear-gradient(90deg, orange, red, orange);
+
+                    &::before {
+                        animation: rotateY 2s linear infinite;
+                    }
+
+                    @keyframes rotateY {
+                        to {
+                            transform: rotateY(360deg);
+                        }
+                    }
+                }
+            }
         }
     }
     
     .sign-up {
         display: flex;
-        flex-direction: column;
-
-        input:focus {
-            animation: border-color 2s linear infinite;
-        }
-
-        @keyframes border-color {
-            from {
-                border-color: #fff;
-            }
-        
-            50% {
-                border-color: #049;
-            }
-        
-            to {
-                border-color: #fff;
-            }
-        }
+        flex-direction: column;        
 
         .input-wrapper {
             width: 15rem;
@@ -153,11 +158,39 @@
 
             &:focus-within i {
                 animation: rotate 1.5s linear infinite;
+
+                @include mozilla {
+                    animation: none;
+                }
             }
 
             @keyframes rotate {
                 to {
                     transform: rotate(360deg);
+                }
+            }
+
+            input:focus {
+                animation: border-color 2s linear infinite;
+            }
+    
+            @keyframes border-color {
+                from {
+                    border-color: #fff;
+                }
+            
+                50% {
+                    border-color: #049;
+                }
+            
+                to {
+                    border-color: #fff;
+                }
+            }
+
+            i {
+                @include mozilla {
+                    transform: translateY(-30%);
                 }
             }
         }
@@ -196,5 +229,9 @@
             margin-top: 1.5rem;
             border-top: 1px solid #fff;
         }
+    }
+
+    @media screen and (orientation: landscape) {
+        display: flex;
     }
 }

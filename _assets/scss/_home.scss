@@ -4,80 +4,104 @@
 
 .slideshow-circles {
     grid-column: 1;
-    @extend %flex-centered;
-    flex-wrap: wrap;
+    align-self: end;
+    opacity: 0;
+    display: none;
+    position: absolute;
 
     @include mq-max-w(699px) {
         margin-bottom: var(--main-ws);
     }
 
-    .circle {
-        width: 1em;
-        height: 1em;
-        border: 1px solid #000;
-        background: #000;
-        border-radius: 50%;
-        margin-right: 0.5em;
-        margin-bottom: 1rem;
-        cursor: pointer;
+    ul {
+        list-style-type: none;
+        @extend %flex-centered;
+        flex-wrap: wrap;
 
-        &.active,
-        &:hover {
-            background: var(--light-blue);
-        }
+        .circle {
+            width: 1em;
+            height: 1em;
+            border: 1px solid #000;
+            background: #000;
+            border-radius: 50%;
+            margin-right: 0.5em;
+            margin-bottom: 1rem;
+            cursor: pointer;
 
-        &:hover img {
-            opacity: 1;
-        }
+            $li: &;
 
-        img {
-            opacity: 0;
-            position: absolute;
-            min-width: 100px;
-            max-width: 150px;
-            height: auto;
-            pointer-events: none;
-            transform: translate(10%, -50%);
-            transition: opacity 0.25s;
+            @at-root body {
+                &.dark #{$li} {
+                    background: #ccc;
+                }
+
+                #{$li}.active,
+                #{$li}:hover {
+                    background: var(--light-blue);
+                }
+            }
+
+            &:hover img {
+                opacity: 1;
+            }
+
+            img {
+                opacity: 0;
+                position: absolute;
+                min-width: 100px;
+                max-width: 150px;
+                height: auto;
+                pointer-events: none;
+                transform: translate(10%, -50%);
+                transition: opacity 0.25s;
+            }
         }
     }
 }
 
-.animal-info {
+.slideshow {
     grid-row: 2 / -1;
     grid-column: 1;
-    text-align: center;
+    
+    .animal-info {
+        text-align: center;
 
-    img {
-        max-width: 100%;
-        max-height: 80vh;
-        /* height: auto; */
-        padding: 0.5rem;
-        border: 2px solid #000;
-        border-radius: 0.3rem;
-        background: #fff;
-        /* transition: transform 0.3s; */
-    }
+        &:not(:last-of-type) {
+            margin-bottom: var(--layout-ws);
+        }
 
-    .title {
-        font-size: 1.7em;
-        font-weight: bold;
-        font-style: italic;
-        margin-top: 1rem;
-    }
+        img {
+            max-width: 100%;
+            max-height: 80vh;
+            /* height: auto; */
+            padding: 0.5rem;
+            border: 2px solid #000;
+            border-radius: 0.3rem;
+            background: #fff;
+            /* transition: transform 0.3s; */
+        }
 
-    .description {
-        max-width: 60%;
-        margin: 0 auto;
+        .title {
+            font-size: 1.7em;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        .description {
+            max-width: 60%;
+            margin: 0 auto;
+        }
     }
 }
 
 aside.images {
     text-align: center;
     padding-top: var(--main-ws);
-    border-top: 1px solid #000;
+    border-top: 3px solid #000;
 
-    .img-cnt {
+    .img-container {
+        display: block;
         max-width: 100%;
         max-height: 100%;
 
@@ -106,6 +130,20 @@ aside.images {
         margin: 0 var(--layout-ws) var(--layout-ws);
     }
 
+    .slideshow-circles {
+        opacity: 1;
+        display: block;
+        position: static;
+    }
+
+    .animal-info {
+        &:not([class*=visible]) {
+            display: none;
+            opacity: 0;
+            position: absolute;
+        }
+    }
+
     aside.images {
         grid-row: 1 / -1;
         grid-column: 2;
@@ -116,7 +154,7 @@ aside.images {
             padding-bottom: 0;
         }
         
-        .img-cnt {
+        .img-container {
             align-self: center;
             justify-self: center;
 

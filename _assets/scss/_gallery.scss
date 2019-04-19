@@ -31,10 +31,18 @@ section.gallery {
                 &.active {
                     pointer-events: none;
                 }
+                
+                $li: &;
 
-                &.active,
-                &:hover {
-                    background: var(--blue);
+                @at-root body {
+                    &.dark #{$li} {
+                        background: #ccc;
+                    }
+
+                    #{$li}.active,
+                    #{$li}:hover {
+                        background: var(--blue);
+                    }
                 }
 
                 &:not(:last-child) {

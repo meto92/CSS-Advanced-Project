@@ -2,14 +2,27 @@ body {
     max-width: 1333px;
     margin: 0 auto;
     background: var(--body-bg-color);
-}
 
-main {
-    background: var(--body-bg-color);
-
-    & > header h1 {
-        text-align: center;
-        padding: var(--layout-ws) 0;
+    main {
         background: var(--body-bg-color);
+    
+        & > header h1 {
+            text-align: center;
+            padding: var(--layout-ws) 0;
+            background: var(--body-bg-color);
+        }
+    }
+
+    &.dark {
+        &,
+        main,
+        main > header h1 {
+            color: #fff;
+            background: var(--body-bg-dark-color);
+        }
+
+        .site-footer {
+            background: #000;
+        }
     }
 }

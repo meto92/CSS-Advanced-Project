@@ -10,6 +10,12 @@
     }
 }
 
+@mixin mozilla {
+    @-moz-document url-prefix() {
+        @content;
+    }
+}
+
 @mixin circle($size) {
     width: $size;
     height: $size;

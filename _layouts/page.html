@@ -22,10 +22,12 @@
 
     {% include footer.html %}
 
-    <span class="back-to-top" title="Back to top"><i class="fas fa-chevron-circle-up"></i></span>
+    <span class="fa theme"></span>
+    <span class="back-to-top fas" title="Back to top"></span>
 
     <!-- scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ site.baseurl }}/scripts/theme.js"></script>
     
     {% if page.url == "/" %}
         <script src="{{ site.baseurl }}/scripts/home.js"></script>

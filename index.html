@@ -4,5 +4,41 @@ title: Weird sea animals
 linkText: Home
 icon: <i class="fas fa-home"></i>
 order: 1
+aside_images: 
+  - photo-1514907283155-ea5f4094c70c.jpg
+  - Orange and black crab.jpg
+  - photo-1437622368342-7a3d73a34c8f.jpg
+  - photo-1473091734859-44ec098bdd22.jpg
+  - photo-1522293872976-6e55eaaad8b6.jpg
+  - Red and silver fighting fish.jpg
+  - Stone fish.jpg
 ---
 
+<section class="content">
+    <section class="slideshow-circles">
+        <ul></ul>
+    </section>
+    <section class="slideshow">
+        {% for animal in site.animals %}
+            <article class="animal-info">
+                <div class="img-container">
+                    <img src="{{ site.baseurl }}images/slideshow/{{ animal.src }}" alt="Animal picture">
+                </div>
+                <header>
+                    <p class="title">{{ animal.title }}</h2>
+                </header>
+                <p class="description">{{ animal.description }}</p>
+            </article>
+        {% endfor %}
+    </section>
+
+    <aside class="images">
+        <h2 class="title">SeA also</h2>
+
+        {% for img in page.aside_images %}
+            <span class="img-container">
+                <img src="{{ site.baseurl }}images/aside/{{ img }}" alt="Animal picture">
+            </span>
+        {% endfor %}
+    </aside>
+</section>

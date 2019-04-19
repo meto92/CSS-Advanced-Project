@@ -35,19 +35,11 @@ $(() => {
             show($(".zoom-overlay .next"));
         }
     };
-    
-    const fixOverlayImgWidthAndHeight = () => {
-        $(".zoom-overlay img")
-            .css("width", "auto")
-            .css("height", "auto");
-    };
 
     const changeImg = (index) => {
         $(".zoom-overlay img")
             .attr("src", $images[index].getAttribute("src"))
             .attr(indexAttr, index);
-
-        fixOverlayImgWidthAndHeight();
     };
 
     const animateImgChange = (newImgIndex) => {
@@ -121,7 +113,6 @@ $(() => {
             );
 
         fixButtons(index);
-        fixOverlayImgWidthAndHeight();
         
         setTimeout(() => $(".zoom-overlay > span").fadeIn(pressEscSpanFadeInAnimationDuration), zoomOverlayAnimationDuration);
         setTimeout(() => $(".zoom-overlay > span").fadeOut(pressEscSpanFadeOutAnimationDuration), pressEscSpanFadeOutDelay);
@@ -135,8 +126,8 @@ $(() => {
         const keyCode = e.keyCode
         
         // 27 - Esc code
-        // 37 - Left arrow
-        // 39 - Right arrow
+        // 37 - Left arrow ←
+        // 39 - Right arrow →
         if (keyCode === 27) {
             removeZoomOverlay();
         } else if (keyCode === 37) {

@@ -44,7 +44,7 @@ aside.share {
         justify-self: center;
         transform: translateY(-5rem);
         
-        button {
+        .close {
             width: 3em;
             height: 3em;
             font-size: 1.1em;
@@ -56,6 +56,11 @@ aside.share {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &::before {
+                content: "\f057";
+                font-size: 1.5em;
+            }
             
             i {
                 font-size: 1.5em;
@@ -76,32 +81,6 @@ aside.share {
         border: 3px solid #000;
         border-radius: 50%;
 
-        &:hover {
-            border-color: #555;
-
-            i {
-                transform: rotate(360deg);
-            }
-
-            &::after {
-                opacity: 1;
-            }
-
-            $colorByClass: (
-                fa-facebook: #3b5998,
-                fa-twitter: #00aced,
-                fa-google-plus: #dd4b39,
-                fa-linkedin: #007bb6,
-                fa-instagram: #517fa4
-            );
-
-            @each $class, $color in $colorByClass {
-                .#{$class} {
-                    color: $color;
-                }
-            }
-        }
-
         &::after {
             position: absolute;
             @extend %tlrb-zero;
@@ -112,10 +91,50 @@ aside.share {
             opacity: 0;
             transition: opacity 0.5s;
         }
-    }
 
-    i {
-        transition: color 0.3s, transform 0.3s;
+        &::before {
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        $content-by-class: (
+            facebook: "\f09a",
+            twitter: "\f099",
+            google-plus: "\f2b3",
+            linkedin: "\f08c",
+            instagram: "\f16d"
+        );
+
+        @each $class, $content in $content-by-class {
+            &.#{$class}::before {
+                content: $content;
+            }
+        }
+
+        &:hover {
+            border-color: #555;
+            
+            &::after {
+                opacity: 1;
+            }
+
+            &::before {
+                transform: rotate(360deg);
+            }
+
+            $colorByClass: (
+                facebook: #3b5998,
+                twitter: #00aced,
+                google-plus: #dd4b39,
+                linkedin: #007bb6,
+                instagram: #517fa4
+            );
+
+            @each $class, $color in $colorByClass {
+                &.#{$class} {
+                    color: $color;
+                }
+            }
+        }
     }
 
     @include mq-min-w(600px) {
@@ -170,8 +189,8 @@ aside.share {
 
 @include mq-max-w(599px) {
     .share-center {
-        display: contents;
         position: fixed;
+        z-index: 100;    
         top: 0;
         left: 0;
         right: 0;
@@ -180,7 +199,6 @@ aside.share {
         align-items: center;
         justify-content: center;
         background: rgba(0, 0, 0, 0.8);
-        z-index: 100;    
         animation: slide-down 0.5s ease-out;
 
         @keyframes slide-down {
@@ -193,8 +211,6 @@ aside.share {
             transform: translateY(0);
             display: grid;
             position: static;
-            // grid-template-columns: repeat(3, 3rem);
-            // grid-template-rows: repeat(4, 3rem);
             grid-gap: 0.5em;
             grid-template-areas:
                 " . btn . "
