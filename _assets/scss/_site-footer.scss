@@ -209,6 +209,11 @@
         padding-bottom: 1rem;
     }
 
+    @media screen and (max-width: 699px) and (orientation: landscape) {
+        position: static;
+        margin-top: -85%;
+    }
+
     @include mq-min-w(700px) {
         display: flex;
         flex-wrap: wrap;
@@ -229,9 +234,5 @@
             margin-top: 1.5rem;
             border-top: 1px solid #fff;
         }
-    }
-
-    @media screen and (orientation: landscape) {
-        display: flex;
     }
 }

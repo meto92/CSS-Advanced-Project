@@ -10,7 +10,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
 
-exclude: [_assets, node_modules, Gemfile, Gemfile.lock, gulpfile.js, package.json, package-lock.json]
+exclude: [_assets, node_modules, Gemfile, Gemfile.lock, gulpfile.js, package.json, package-lock.json, README.md]
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

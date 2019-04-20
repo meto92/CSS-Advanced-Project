@@ -1,6 +1,7 @@
 aside.share {
     display: block;
     position: fixed;
+    z-index: 100;
     top: 50%;
     left: 0;
     padding: 1rem;
@@ -36,35 +37,32 @@ aside.share {
         pointer-events: none;
     }
 
-    li:last-of-type {
+    .close {
         display: none;
         opacity: 0;
         position: absolute;
         grid-area: btn;
         justify-self: center;
-        transform: translateY(-5rem);
-        
-        .close {
-            width: 3em;
-            height: 3em;
-            font-size: 1.1em;
-            border-radius: 50%;
-            outline: none;
-            border: 2px solid #000;
-            background: #fff;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-            &::before {
-                content: "\f057";
-                font-size: 1.5em;
-            }
-            
-            i {
-                font-size: 1.5em;
-            }
+        @media screen and (min-height: 303px) {
+            transform: translateY(-5rem);
+        }
+
+        width: 3em;
+        height: 3em;
+        font-size: 1.1em;
+        border-radius: 50%;
+        outline: none;
+        border: 2px solid #000;
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+            content: "\f057";
+            font-size: 1.5em;
         }
     }
 
@@ -177,12 +175,6 @@ aside.share {
                     transition-delay: $i * 0.1s;
                 }
             }
-
-            &:last-of-type {
-                opacity: 0;
-                display: none;
-                position: absolute;
-            }
         }
     }
 }
@@ -218,6 +210,25 @@ aside.share {
                 ".  li3 ."
                 "li4 . li5";
 
+            @media screen and (max-height: 200px) {
+                display: block;
+
+                ul {
+                    display: flex;
+
+                    li:not(:last-child) {
+                        margin-right: 1rem;
+                    }
+                }
+                
+                .close {
+                    position: absolute;
+                    top: -0.75rem;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+
             .title {
                 opacity: 0;
                 display: none;
@@ -229,6 +240,12 @@ aside.share {
                 opacity: 1;
                 pointer-events: all;
                 display: block;
+            }
+
+            .close {
+                opacity: 1;
+                display: block;
+                pointer-events: al;
             }
 
             a {

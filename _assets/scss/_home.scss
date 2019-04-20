@@ -1,4 +1,4 @@
-.content {
+.home {
     margin: 0 var(--main-ws) var(--main-ws);
 }
 
@@ -122,7 +122,7 @@ aside.images {
 }
 
 @include mq-min-w(700px) {
-    .content {
+    .home {
         display: grid;
         grid-template-rows: repeat(8, 100px);
         grid-template-columns: 7fr 2fr;
