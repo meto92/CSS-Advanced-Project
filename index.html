@@ -22,7 +22,7 @@ aside_images:
         {% for animal in site.animals %}
             <article class="animal-info">
                 <div class="img-container">
-                    <img src="{{ site.baseurl }}images/slideshow/{{ animal.src }}" alt="Animal picture">
+                    <img src="{{ site.baseurl }}/images/slideshow/{{ animal.src }}" alt="Animal picture">
                 </div>
                 <header>
                     <p class="title">{{ animal.title }}</h2>
@@ -37,7 +37,7 @@ aside_images:
 
         {% for img in page.aside_images %}
             <span class="img-container">
-                <img src="{{ site.baseurl }}images/aside/{{ img }}" alt="Animal picture">
+                <img src="{{ site.baseurl }}/images/aside/{{ img }}" alt="Animal picture">
             </span>
         {% endfor %}
     </aside>
