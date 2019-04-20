@@ -1,7 +1,7 @@
 title: Weird Sea Animals
 destination: docs
-baseurl: ""
-# baseurl: "/CSS-Advanced-Project"
+# baseurl: ""
+baseurl: "/CSS-Advanced-Project"
 collections:
   - animals
 # Build settings
