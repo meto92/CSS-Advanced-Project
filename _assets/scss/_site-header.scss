@@ -1,8 +1,5 @@
 .site-header {
     padding: 1rem;
-    // width: 100vw;
-    // position: relative;
-    // left: -4rem;
     
     &.banner {
         background-position: center center;
@@ -118,7 +115,7 @@
             border-radius: 0.4em;
             padding: 0.2em 0.5em;
             width: 80%;
-            transition: background-color 0.3s, transform 0.3s, width 1s;/**/
+            transition: background-color 0.3s, transform 0.3s, width 0.5s;
         }
 
         i {
@@ -215,7 +212,7 @@
         &.banner {
             min-height: 444px;
 
-            &.nav-and-search::after {
+            .nav-and-search::after {
                 display: block;
                 content: "";
                 position: absolute;
@@ -264,7 +261,8 @@
                 background: rgba(0, 0, 0, 0.4);
                 animation: none !important;
                 
-                &:hover {
+                &:hover,
+                &:focus {
                     color: #000;
                     background: rgba(255, 255, 255, 0.5);
                     transform: scale(0.8);
@@ -360,7 +358,7 @@
             right: 0;
 
             & a {
-                animation: linksAppear 2.25s ease-out backwards;
+                animation: linksAppear 1.2s ease-out backwards;
             }
             
             @keyframes linksAppear {

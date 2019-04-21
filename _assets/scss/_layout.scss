@@ -7,7 +7,9 @@ body {
         background: var(--body-bg-color);
     
         & > header h1 {
+            max-width: 80%;
             text-align: center;
+            margin: 0 auto;
             padding: var(--layout-ws) 0;
             background: var(--body-bg-color);
         }
