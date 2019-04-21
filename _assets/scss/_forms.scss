@@ -1,6 +1,4 @@
 form {
-    $form: &;
-
     & > label {
         margin-bottom: 0.5em;
         color: #000;
@@ -32,7 +30,7 @@ form {
             }
         }
     
-        @at-root #{$form} textarea,
+        @at-root form textarea,
         & input {
             color: #fff;
             background: #333;

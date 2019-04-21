@@ -130,8 +130,7 @@
                 }
 
                 &:hover {
-                    // background: transparent;
-                    background: linear-gradient(90deg, orange, red, orange);
+                    background: linear-gradient(90deg, transparent, var(--blue), transparent);
 
                     &::before {
                         animation: rotateY 2s linear infinite;

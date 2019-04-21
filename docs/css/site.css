@@ -678,8 +678,8 @@ body {
       .site-footer .follow-us li a.instagram::before {
         content: ""; }
       .site-footer .follow-us li a:hover {
-        background: -webkit-gradient(linear, left top, right top, from(orange), color-stop(red), to(orange));
-        background: linear-gradient(90deg, orange, red, orange); }
+        background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(var(--blue)), to(transparent));
+        background: linear-gradient(90deg, transparent, var(--blue), transparent); }
         .site-footer .follow-us li a:hover::before {
           -webkit-animation: rotateY 2s linear infinite;
           animation: rotateY 2s linear infinite; }
